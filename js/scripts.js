@@ -17,26 +17,23 @@ Account.prototype.transaction = function(inputtedTransactionAmount, inputtedChan
 $(document).ready(function(){
 
   var newAccount = new Account();
-  var inputtedWithdraw;
-  var inputteddeposit;
+  var inputtedTransactionAmount;
   var inputtedChange;
 
   $("form#mainform").submit(function(event) {
     event.preventDefault();
-  var inputtedName = $("input#name").val();
-  var inputtedBeginBal = parseInt($("input#beginBal").val());
-  newAccount.accountName = inputtedName;
-  newAccount.runningBal = inputtedBeginBal;
-  $("#show-balance").append("$" + newAccount.runningBal);
+    var inputtedName = $("input#name").val();
+    var inputtedBeginBal = parseInt($("input#beginBal").val());
+    newAccount.accountName = inputtedName;
+    newAccount.runningBal = inputtedBeginBal;
+    $("#show-balance").append("$" + newAccount.runningBal);
   });
 
   $("#changeAmount").click(function(){
     inputtedChange = $("input:radio[name=changeAmount]:checked").val();
     inputtedTransactionAmount = parseInt($("input#transactionAmount").val());
-    // inputteddeposit = parseInt($("input#deposit").val());
     newAccount.transaction(inputtedTransactionAmount, inputtedChange)
     $("#show-balance").text("$" + newAccount.runningBal);
-
+    $("input#transactionAmount").val("");
   });
-
 });
