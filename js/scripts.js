@@ -6,11 +6,11 @@ function showHide(show, hide,){
    $(show).show();
    $(hide).hide();
 }
-Account.prototype.transaction = function(inputtedWithdraw, inputteddeposit, inputtedChange){
+Account.prototype.transaction = function(inputtedTransactionAmount, inputtedChange){
   if(inputtedChange === "withdraw"){
-     this.runningBal -= inputtedWithdraw;
+     this.runningBal -= inputtedTransactionAmount;
   }  else if (inputtedChange === "deposit"){
-     this.runningBal += inputteddeposit ;
+     this.runningBal += inputtedTransactionAmount;
     }
 }
 
@@ -32,9 +32,9 @@ $(document).ready(function(){
 
   $("#changeAmount").click(function(){
     inputtedChange = $("input:radio[name=changeAmount]:checked").val();
-    inputtedWithdraw = parseInt($("input#withdraw").val());
-    inputteddeposit = parseInt($("input#deposit").val());
-    newAccount.transaction(inputtedWithdraw, inputteddeposit, inputtedChange)
+    inputtedTransactionAmount = parseInt($("input#transactionAmount").val());
+    // inputteddeposit = parseInt($("input#deposit").val());
+    newAccount.transaction(inputtedTransactionAmount, inputtedChange)
     $("#show-balance").text("$" + newAccount.runningBal);
 
   });
