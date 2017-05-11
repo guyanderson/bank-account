@@ -1,32 +1,50 @@
-function Account(name, inputtedBeginBal) {
-  this.name = name;
+function Account(inputtedName, inputtedBeginBal, inputtedChange) {
+  this.accountName = inputtedName;
   this.runningBal = inputtedBeginBal;
+  this.inputtedChange = inputtedChange;
 }
+function showHide(show, hide,){
+   $(show).show();
+   $(hide).hide();
+}
+Account.prototype.transaction = function(inputtedWithdraw, inputtedDeposite){
+  console.log(this.runningBal, typeof(inputtedWithdraw))
+  if(this.inputtedChange === "withdraw"){
+    console.log(this.runningBal -= inputtedWithdraw);
+    return this.runningBal - inputtedWithdraw;
 
-Account.prototype.change = function(){
-  // if(inputtedChange === 0){
-  //   return this.runningBal - inputtedWithdraw;
-  // }
-  console.log("TEST");
+  }  else if (this.inputtedChange === "deposite"){
+      return this.runningBal += inputtedDeposite ;
+    }
 }
 
 $(document).ready(function(){
-  $("#changeAmount").click(function(newAccount, inputtedWithdraw, inputtedChange){
-    $("#show-balance").append(newAccount.change());
-  });
+
+  var newAccount = new Account();
+  var inputtedWithdraw;
+  var inputtedDeposite;
   $("form#mainform").submit(function(event) {
-      event.preventDefault();
+    event.preventDefault();
 
-    var inputtedName = $("input#name").val();
-    var inputtedBeginBal = parseInt($("input#beginBal").val());
-    var inputtedWithdraw = parseInt($("input#withdraw").val());
-    var inputtedDeposite = parseInt($("input#deposite").val());
-    var inputtedChange = $("input:radio[name=changeAmount]:checked").val();
+  var inputtedName = $("input#name").val();
+  var inputtedBeginBal = parseInt($("input#beginBal").val());
+  inputtedWithdraw = parseInt($("input#withdraw").val());
+  console.log(typeof(inputtedWithdraw))
+  inputtedDeposite = parseInt($("input#deposite").val());
+  var inputtedChange = $("input:radio[name=changeAmount]:checked").val();
+  newAccount.accountName = inputtedName;
+  newAccount.runningBal = inputtedBeginBal;
+  newAccount.inputtedChange = inputtedChange;
 
-    var newAccount = new Account(inputtedName, inputtedBeginBal);
-    $("#show-balance").append(newAccount.change());
-
+  $("#changeAmount").click(function(){
+    newAccount.transaction(inputtedWithdraw, inputtedDeposite)
     console.log(newAccount.runningBal);
+  });
+
+
+  $("#show-balance").append("$" + newAccount.runningBal);
 
   });
+
+
 });

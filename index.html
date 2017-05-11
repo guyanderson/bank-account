@@ -12,51 +12,47 @@
     <div class = "container">
       <form id = "mainform">
         <div class="account">
-
           <div class="col-md-6">
             <div class="form-group">
               <label for="name">What is your name?</label>
               <input type="text" class="form-control" id = "name">
-
               <div class="form-group">
                 <label for="beginBal">What is your beginning deposite?</label>
                 <input type="text" class="form-control" id = "beginBal">
               </div>
             </div>
-          </div>
-          <div id = "withdraw">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="withdraw">Withdraw</label>
-                <input type="text" class="form-control" id = "withdraw">
-              </div>
-
-              <div class="radio">
-                <label>
-                  <input type="radio" name="changeAmount" value="withdraw" checked>
-                  Withdraw
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="changeAmount" value="deposite">
-                  Deposit
-                </label>
-              </div>
-
-              <span class="btn btn-primary" id="changeAmount">Mak a transaction</span>
-
-              <!-- <div class="form-group">
-                <label for="deposite">deposite</label>
-                <input type="text" class="form-control" id = "deposite">
-              </div> -->
-            </div>
+            <button  onclick="showHide('#transaction', '#mainform')"type = "submit">Submit</button>
           </div>
         </div>
-
-        <button type = "submit">Submit</button>
+      </form>
+      <div id = "transaction">
+        <form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="withdraw">Withdraw</label>
+              <input type="text" class="form-control" id = "withdraw">
+            </div>
+            <div class="form-group">
+              <label for="deposite">Deposite</label>
+              <input type="text" class="form-control" id = "deposite">
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="changeAmount" value="withdraw" checked>
+                Withdraw
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="changeAmount" value="deposite">
+                Deposit
+              </label>
+            </div>
+            <span class="btn btn-primary" id="changeAmount">Make a transaction</span>
         </form>
-      <div id="show-balance">
+        <h4>Your current ballance is:</h4>
+        <div id="show-balance">
+        </div>
       </div>
     </div>
   </body>
